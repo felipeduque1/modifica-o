@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Lista</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        ul {
+            padding-left: 30px;
+            list-style-type: none;
+        }
+        li {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 8px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar itens à sua lista:</h1>
+    <input type="text" id="itemNovo" placeholder="Insira um item">
+    <button onclick="adicionarItem()">Adicionar Item</button>
+
+    <ul id="listaDeItens"></ul>
+
+    <script>
+        const itens = [];
+
+        function adicionarItem() {
+            const inputItem = document.getElementById('itemNovo');
+            const novoItem = inputItem.value.trim();
+
+            console.log('Novo item adicionado:', novoItem);
+
+            if (novoItem) {
+                itens.push(novoItem);
+                console.log('Itens após adição:', itens);
+                inputItem.value = '';
+                atualizarLista();
+            }
+        }
+
+        function atualizarLista() {
+            const ulLista = document.getElementById('listaDeItens');
+            ulLista.innerHTML = '';
+
+            console.log('Começando a exibição da lista');
+
+            itens.forEach(novoItem => {
+                console.log('Exibindo o item:', novoItem);
+                const li = document.createElement('li');
+                li.textContent = novoItem;
+                ulLista.appendChild(li);
+            });
+
+            console.log('Lista exibida no HTML:', ulLista.innerHTML);
+        }
+    </script>
+</body>
+</html>
